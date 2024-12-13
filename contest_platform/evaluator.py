@@ -1,12 +1,9 @@
-import subprocess
-import json
-import os
 from sandbox import execute_code
-from problem_repository import load_test_cases, save_submission_results
+from problem_repository import load_test_cases, save_submission_results, save_submission
 
 def evaluate_submission(submission):
     try:
-        submission_id = submission["submission_id"]
+        submission_id = save_submission(submission)
         code = submission["code"]
 
         with open("submission.py", "w") as file:

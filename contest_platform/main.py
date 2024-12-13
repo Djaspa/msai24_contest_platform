@@ -3,7 +3,7 @@ from evaluator import evaluate_submission
 def main():
     
     submission = {
-        "submission_id": 1,
+        "submission_id": None,
         "user_id": 101,
         "problem_id": 202,
         "code": f'def solve():\n\tprint(input())\nsolve()',
