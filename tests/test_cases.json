@@ -1,0 +1,6 @@
+{
+    "202": [
+        {"input_data": "hello", "expected_output": "hello"},
+        {"input_data": "world", "expected_output": "world"}
+    ]
+}
