@@ -1,7 +1,7 @@
 from contest_platform.evaluator import evaluate_submission
+from api.api import get_app
 
 def main():
-    
     submission = {
         "submission_id": None,
         "user_id": 101,
@@ -15,4 +15,6 @@ def main():
     print("Details:", result)
 
 if __name__ == "__main__":
-    main()
+    #main()
+    app = get_app()
+    app.run()
