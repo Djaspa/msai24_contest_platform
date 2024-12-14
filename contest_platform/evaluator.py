@@ -1,5 +1,5 @@
-from sandbox import execute_code
-from problem_repository import load_test_cases, save_submission_results, save_submission
+from contest_platform.sandbox import execute_code
+from contest_platform.problem_repository import load_test_cases, save_submission_results, save_submission
 
 def evaluate_submission(submission):
     try:

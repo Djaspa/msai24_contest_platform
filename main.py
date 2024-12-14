@@ -1,4 +1,4 @@
-from evaluator import evaluate_submission
+from contest_platform.evaluator import evaluate_submission
 
 def main():
     

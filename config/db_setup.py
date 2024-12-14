@@ -1,5 +1,5 @@
 import sqlite3
-from config import DATABASE_PATH
+from db_config import DATABASE_PATH
 
 def initialize_database():
     connection = sqlite3.connect(DATABASE_PATH)
