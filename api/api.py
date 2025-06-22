@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template, redirect, url_for, session
 from contest_platform.problem_repository import get_connection
-from contest_platform.evaluator import evaluate_submission
+from contest_platform.evaluator import evaluate_submission, get_worker_status
 import hashlib
 import os
 
@@ -222,6 +222,10 @@ def login_user():
             return jsonify({'error': 'Invalid username or password'}), 401
         else:
             return render_template('login.html', error='Invalid username or password')
+
+@app.route('/worker/status', methods=['GET'])
+def worker_status():
+    return jsonify(get_worker_status())
 
 def get_app():
     return app

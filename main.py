@@ -1,4 +1,4 @@
-from contest_platform.evaluator import evaluate_submission
+from contest_platform.evaluator import evaluate_submission, start_workers
 from api.api import get_app
 
 def main():
@@ -16,5 +16,6 @@ def main():
 
 if __name__ == "__main__":
     #main()
+    start_workers(num_workers=2)
     app = get_app()
     app.run(host='0.0.0.0', port=5000)

@@ -43,6 +43,7 @@ def initialize_database():
         language TEXT NOT NULL,
         timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
         verdict TEXT,
+        status TEXT DEFAULT 'In Progress',
         FOREIGN KEY (user_id) REFERENCES Users(user_id),
         FOREIGN KEY (problem_id) REFERENCES Problems(problem_id)
     )
