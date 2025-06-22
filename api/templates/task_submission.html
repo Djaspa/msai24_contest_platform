@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>{{ title }}</h2>
+        <p>{{ description }}</p>
+        <form method="post" action="/submit/{{ problem_id }}">
+            <textarea name="code" rows="12" cols="80" placeholder="Paste your code here...">{{ code|default('') }}</textarea><br>
+            <input type="hidden" name="title" value="{{ title }}">
+            <input type="hidden" name="description" value="{{ description }}">
+            <button type="submit">Submit</button>
+        </form>
+        {% if result %}
+            <div class="result">
+                <h3>Evaluation Result</h3>
+                <pre>{{ result }}</pre>
+            </div>
+        {% endif %}
+        <a href="/tasks">Back to Task List</a>
+    </div>
+</body>
+</html> 
