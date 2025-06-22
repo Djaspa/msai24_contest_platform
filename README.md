@@ -9,18 +9,6 @@ Current Features
 
 * List user submissions with filters
 
-# Setup
-
-Install dependencies and run server:
-
-`pip install -r requirements.txt`
-
-`python3 setup_db.py`
-
-`python3 main.py`
-
-The API server will start at http://127.0.0.1:5000
-
 # Simple requests
 
 Create problem
@@ -67,3 +55,21 @@ List submissions
 ```
 curl -X GET "http://127.0.0.1:5000/user/submissions_list?user_id=1&problem_id=1"
 ```
+
+# Docker
+
+You can run the project using Docker:
+
+1. Build the Docker image:
+
+```
+docker build -t msai24_contest_platform .
+```
+
+2. Run the container:
+
+```
+docker run -p 5000:5000 msai24_contest_platform
+```
+
+The app will be available at http://127.0.0.1:5000
