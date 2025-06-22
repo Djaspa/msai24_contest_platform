@@ -4,13 +4,26 @@
     <meta charset="UTF-8">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="/static/style.css">
+    <!-- Highlight.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <style>
+        .hljs {
+            background: #f4f4f4;
+            border-radius: 4px;
+            padding: 8px;
+        }
+        #code-editor { font-family: monospace; font-size: 1em; }
+    </style>
 </head>
 <body>
     <div class="container">
         <h2>{{ title }}</h2>
         <p>{{ description }}</p>
         <form method="post" action="/submit/{{ problem_id }}">
-            <textarea name="code" rows="12" cols="80" placeholder="Paste your code here...">{{ code|default('') }}</textarea><br>
+            <textarea id="code-editor" name="code" rows="12" cols="80" placeholder="Paste your code here...">{{ code|default('') }}</textarea><br>
             <input type="hidden" name="title" value="{{ title }}">
             <input type="hidden" name="description" value="{{ description }}">
             <button type="submit">Submit</button>
@@ -18,10 +31,17 @@
         {% if result %}
             <div class="result">
                 <h3>Evaluation Result</h3>
+                <pre><code class="language-python">{{ code|default('') }}</code></pre>
                 <pre>{{ result }}</pre>
             </div>
         {% endif %}
         <a href="/tasks">Back to Task List</a>
     </div>
+    <script>
+        // Optionally, auto-highlight the code in the result
+        document.querySelectorAll('pre code').forEach((el) => {
+            hljs.highlightElement(el);
+        });
+    </script>
 </body>
 </html> 
