@@ -33,6 +33,18 @@ def execute_code(code_file, input_data, expected_output, time_limit, language='p
             if run_proc.returncode != 0:
                 return {"verdict": "Runtime Error", "details": run_proc.stderr.decode()}
             output = run_proc.stdout.decode().strip()
+        elif language == 'go':
+            run_proc = subprocess.run(
+                ["go", "run", code_file],
+                input=input_data.encode(),
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                timeout=time_limit,
+                cwd=os.path.dirname(code_file) or None
+            )
+            if run_proc.returncode != 0:
+                return {"verdict": "Runtime Error", "details": run_proc.stderr.decode()}
+            output = run_proc.stdout.decode().strip()
         else:
             return {"verdict": "System Error", "details": f"Unsupported language: {language}"}
 

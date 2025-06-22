@@ -49,6 +49,8 @@ class WorkerManager:
                     language = submission.get("language", "python")
                     if language == "java":
                         code_file = "Main.java"
+                    elif language == "go":
+                        code_file = "main.go"
                     else:
                         code_file = "submission.py"
                     with open(code_file, "w") as file:

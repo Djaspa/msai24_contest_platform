@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
     <script>hljs.highlightAll();</script>
     <style>
         .hljs {
@@ -27,6 +29,7 @@
             <select id="language" name="language" onchange="updateEditorLanguage()">
                 <option value="python" {% if not code or request.form.get('language', 'python') == 'python' %}selected{% endif %}>Python</option>
                 <option value="java" {% if request.form.get('language') == 'java' %}selected{% endif %}>Java</option>
+                <option value="go" {% if request.form.get('language') == 'go' %}selected{% endif %}>Go</option>
             </select><br>
             <textarea id="code-editor" name="code" rows="12" cols="80" placeholder="Paste your code here...">{{ code|default('') }}</textarea><br>
             <input type="hidden" name="title" value="{{ title }}">
