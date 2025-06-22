@@ -23,6 +23,11 @@
         <h2>{{ title }}</h2>
         <p>{{ description }}</p>
         <form method="post" action="/submit/{{ problem_id }}">
+            <label for="language">Language:</label>
+            <select id="language" name="language" onchange="updateEditorLanguage()">
+                <option value="python" {% if not code or request.form.get('language', 'python') == 'python' %}selected{% endif %}>Python</option>
+                <option value="java" {% if request.form.get('language') == 'java' %}selected{% endif %}>Java</option>
+            </select><br>
             <textarea id="code-editor" name="code" rows="12" cols="80" placeholder="Paste your code here...">{{ code|default('') }}</textarea><br>
             <input type="hidden" name="title" value="{{ title }}">
             <input type="hidden" name="description" value="{{ description }}">
@@ -31,16 +36,23 @@
         {% if result %}
             <div class="result">
                 <h3>Evaluation Result</h3>
-                <pre><code class="language-python">{{ code|default('') }}</code></pre>
+                <pre><code id="result-code" class="language-{{ request.form.get('language', 'python') }}">{{ code|default('') }}</code></pre>
                 <pre>{{ result }}</pre>
             </div>
         {% endif %}
         <a href="/tasks">Back to Task List</a>
     </div>
     <script>
-        // Optionally, auto-highlight the code in the result
-        document.querySelectorAll('pre code').forEach((el) => {
-            hljs.highlightElement(el);
+        function updateEditorLanguage() {
+            var lang = document.getElementById('language').value;
+            var codeBlock = document.getElementById('result-code');
+            if (codeBlock) {
+                codeBlock.className = 'language-' + lang;
+                hljs.highlightElement(codeBlock);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            updateEditorLanguage();
         });
     </script>
 </body>

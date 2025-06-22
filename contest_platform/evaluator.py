@@ -46,16 +46,22 @@ class WorkerManager:
                 try:
                     update_submission_status(submission['submission_id'], 'Processing')
                     code = submission["code"]
-                    with open("submission.py", "w") as file:
+                    language = submission.get("language", "python")
+                    if language == "java":
+                        code_file = "Main.java"
+                    else:
+                        code_file = "submission.py"
+                    with open(code_file, "w") as file:
                         file.write(code)
                     test_cases = load_test_cases(submission["problem_id"])
                     results = []
                     for test_case in test_cases:
                         result = execute_code(
-                            code_file="submission.py",
+                            code_file=code_file,
                             input_data=test_case["input_data"],
                             expected_output=test_case["expected_output"],
-                            time_limit=2
+                            time_limit=2,
+                            language=language
                         )
                         results.append(result)
                         if result["verdict"] != "Passed":

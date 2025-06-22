@@ -60,7 +60,7 @@ def submit_code(problem_id):
         'language': language
     }
     result = evaluate_submission(data)
-    return render_template('task_submission.html', problem_id=problem_id, title=request.form.get('title'), description=request.form.get('description'), result=result, code=code)
+    return render_template('task_submission.html', problem_id=problem_id, title=request.form.get('title'), description=request.form.get('description'), result=result, code=code, request=request)
 
 @app.route('/problem/create_problem', methods=['POST'])
 def create_problem():
